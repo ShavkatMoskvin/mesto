@@ -1,5 +1,5 @@
 .header__line{
-    border: 1px solid #545454;
+    border-top: 1px solid #545454;
     max-width: 880px;
     height: 0px;
     margin: 40px 0 0 0;
