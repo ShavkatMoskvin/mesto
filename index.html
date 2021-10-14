@@ -8,10 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesto</title>
 </head>
+<main>
 <body class="body">
 
     <header class="header">
-        <a class="header__logo" href="#"><img src="images/Vector.svg" alt="Логотип 'Место России'"></a>
+        <div class="header__logo" href="#"></div>
         <div class="header__line"></div>
     </header>
 
@@ -19,7 +20,7 @@
         <img src="images/image.jpg" alt="Жак-Ив Кусто" class="profile__avatar">
         <div class="profile__info">
             <div class="profile__title-container">
-                <h2 class="profile__title">Жак-Ив Кусто</h2>
+                <h1 class="profile__title">Жак-Ив Кусто</h1>
                 <button type="button" class="profile__edit-button"></button>
             </div>
             <p class="profile__subtitle">Исследователь океана</p>
@@ -29,71 +30,71 @@
 
     <section class="elements">
 
-        <div class="element">
+        <article class="element">
             <img class="element__image" alt='Карачаевск' src="images/kirill-pershin-1088404-unsplash.jpg">
             <div class="element__title-container">
                 <h2 class="element__title">Карачаевск</h2>
-                <button type='button' style='background-image: url(images/Vector\ \(1\).svg)' class="element__like"></button>
+                <button type="button" class="element__like"></button>
             </div>
-        </div>
+        </article>
 
-        <div class="element">
+        <article class="element">
             <img class="element__image" alt='Гора Эльбрус' src="images/kirill-pershin-1404681-unsplash.jpg">
             <div class="element__title-container">
                 <h2 class="element__title">Гора Эльбрус</h2>
-                <button type='button' style='background-image: url(images/Vector\ \(1\).svg)' class="element__like"></button>
+                <button type="button" class="element__like"></button>
             </div>
-        </div>
+        </article>
 
-        <div class="element">
+        <article class="element">
             <img class="element__image" alt='Гора' src="images/kirill-pershin-1556355-unsplash.jpg">
             <div class="element__title-container">
                 <h2 class="element__title">Домбай</h2>
-                <button type='button' style='background-image: url(images/Vector\ \(1\).svg)' class="element__like"></button>
+                <button type="button" class="element__like"></button>
             </div>
-        </div>
+        </article>
 
-        <div class="element">
+        <article class="element">
             <img class="element__image" alt="Карачаевск" src="images/kirill-pershin-1088404-unsplash.jpg">
             <div class="element__title-container">
                 <h2 class="element__title">Карачаевск</h2>
-                <button type='button' style='background-image: url(images/Vector\ \(1\).svg)' class="element__like"></button>
+                <button type="button" class="element__like"></button>
             </div>
-        </div>
+        </article>
 
-        <div class="element">
+        <article class="element">
             <img class="element__image" alt='Гора Эльбрус' src="images/kirill-pershin-1404681-unsplash.jpg">
             <div class="element__title-container">
                 <h2 class="element__title">Гора Эльбрус</h2>
-                <button type='button' style='background-image: url(images/Vector\ \(1\).svg)' class="element__like"></button>
+                <button type="button" class="element__like"></button>
             </div>
-        </div>
+        </article>
 
-        <div class="element">
+        <article class="element">
             <img class="element__image" alt='Гора' src="images/kirill-pershin-1556355-unsplash.jpg">
             <div class="element__title-container">
                 <h2 class="element__title">Домбай</h2>
-                <button type='button' style='background-image: url(images/Vector\ \(1\).svg)' class="element__like"></button>
+                <button type="button" class="element__like"></button>
             </div>
-        </div>
+        </article>
 
     </section>
-    <footer class='footer'>
-        <p class='footer__copyright'>© 2020 Mesto Russia</p>
+    <footer class="footer">
+        <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
 
     <div class="popup">
         <div class="popup__content">
-            <button class="popup__close"></button>
-            <h3 class="popup__title">Редактировать профиль</h3>
+            <button type="button" class="popup__close"></button>
+            <h2 class="popup__title">Редактировать профиль</h2>
             <form action="images/image.jpg" class="popup__form">
-                <input type="text" class="popup__input popup__input_name">
+                <input type="name" class="popup__input popup__input_name">
                 <input type="text" class="popup__input popup__input_text">
                 <button type='submit' class="popup__button">Сохранить</button>
             </form>
         </div>
     </div>
-
+</main>
     <script src="scripts/index.js"></script>
 </body>
 </html>

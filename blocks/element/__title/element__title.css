@@ -1,5 +1,6 @@
 .element__title {
   margin: 0;
+  max-width: 220px;
   font-family: Inter;
   font-style: normal;
   font-weight: 900;
