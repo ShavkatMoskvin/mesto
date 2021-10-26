@@ -6,6 +6,7 @@
     min-height: 50px;
     background-color: #000;
     border: 2px solid #fff;
+    border-radius: 2px;
     box-sizing: border-box;
     background-image: url(../../../images/Vector3.svg);
     background-position: 50%;
@@ -13,6 +14,7 @@
     background-size: 22px 22px;
     opacity: 1;
     transition: 0.2s ease-in-out;
+    cursor: pointer;
 }
 .profile__add-button:hover{
     opacity: 0.6;

@@ -3,9 +3,9 @@ const popupClose = document.querySelector('.popup__close');
 const editButton = document.querySelector('.profile__edit-button');
 const nameTitle = document.querySelector('.profile__title');
 const nameText = document.querySelector('.profile__subtitle');
-const popupField = document.querySelector('.popup__input_name');
-const popupFieldText = document.querySelector('.popup__input_text');
-const formButton = document.querySelector(".popup__button");  //Это не лишняя переменная
+const popupField = document.querySelector('.popup__user-name');
+const popupFieldText = document.querySelector('.popup__user-description');
+//const formButton = document.querySelector(".popup__button");
 
 
 function closePopup() {
@@ -20,7 +20,7 @@ function openPopup() {
 editButton.addEventListener('click', openPopup);
 popupClose.addEventListener('click', closePopup);
 
-formButton.addEventListener('click', function (event) {
+formButton.addEventListener('submit', function (event) {
   event.preventDefault();
   nameTitle.textContent = popupField.value;
   nameText.textContent = popupFieldText.value;
