@@ -5,7 +5,7 @@ const nameTitle = document.querySelector('.profile__title');
 const nameText = document.querySelector('.profile__subtitle');
 const popupField = document.querySelector('.popup__user-name');
 const popupFieldText = document.querySelector('.popup__user-description');
-//const formButton = document.querySelector(".popup__button");
+const popupForm = document.querySelector('.popup__form')
 
 
 function closePopup() {
@@ -16,13 +16,13 @@ function openPopup() {
   popupFieldText.value = nameText.textContent;
   popup.classList.add('popup__kebab-case');
 }
-
-editButton.addEventListener('click', openPopup);
-popupClose.addEventListener('click', closePopup);
-
-formButton.addEventListener('submit', function (event) {
+ function submitForm (event) {
   event.preventDefault();
   nameTitle.textContent = popupField.value;
   nameText.textContent = popupFieldText.value;
   closePopup();
-});
+}
+editButton.addEventListener('click', openPopup);
+popupClose.addEventListener('click', closePopup);
+
+popupForm.addEventListener('submit', submitForm);
