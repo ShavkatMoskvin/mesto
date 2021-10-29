@@ -3,18 +3,18 @@ const popupClose = document.querySelector('.popup__close');
 const editButton = document.querySelector('.profile__edit-button');
 const nameTitle = document.querySelector('.profile__title');
 const nameText = document.querySelector('.profile__subtitle');
-const popupField = document.querySelector('.popup__user-name');
-const popupFieldText = document.querySelector('.popup__user-description');
+const popupField = document.querySelector('.popup__input_type_name');
+const popupFieldText = document.querySelector('.popup__input_type_text');
 const popupForm = document.querySelector('.popup__form')
 
 
 function closePopup() {
-  popup.classList.remove('popup__kebab-case');
+  popup.classList.remove('popup__opened');
 }
 function openPopup() {
   popupField.value = nameTitle.textContent;
   popupFieldText.value = nameText.textContent;
-  popup.classList.add('popup__kebab-case');
+  popup.classList.add('popup__opened');
 }
  function submitForm (event) {
   event.preventDefault();
