@@ -9,12 +9,12 @@ const popupForm = document.querySelector('.popup__form')
 
 
 function closePopup() {
-  popup.classList.remove('popup__opened');
+  popup.classList.remove('popup_opened');
 }
 function openPopup() {
   popupField.value = nameTitle.textContent;
   popupFieldText.value = nameText.textContent;
-  popup.classList.add('popup__opened');
+  popup.classList.add('popup_opened');
 }
  function submitForm (event) {
   event.preventDefault();
