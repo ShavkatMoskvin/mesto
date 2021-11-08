@@ -5,7 +5,10 @@
     bottom: 0;
     right: 0;
     background-color: rgba(0, 0, 0 , 0.5);
-    display: none;
+    transition: visibility 0.2s, opacity 0.2s ease-out;
+    display: flex;
     justify-content: center;
     align-items: center;
+    opacity: 0;
+    visibility: hidden;
 }
