@@ -7,7 +7,7 @@
     font-size: 14px;
     line-height: 17px;
     font-style: normal;
-    outline:none
+    outline:none;
 }
 .form__input:invalid {
     border-bottom: 1px solid red;
