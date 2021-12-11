@@ -58,9 +58,11 @@
       <div class="popup__content">
         <button type="button" class="popup__close"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form name="subject" class="popup__form">
-          <input type="text" name="name" class="popup__input popup__input_type_name" placeholder="Имя"/>
-          <input type="text" name="text" class="popup__input popup__input_type_text" placeholder="Профессия" />
+        <form id="formEditProfile" name="subject" class="popup__form">
+          <input type="text" name="name" class="popup__input popup__input_type_name" minlength='2' maxlength="40" required placeholder="Имя"/>
+          <span class="popup__form_type-error popup__form_error-name"></span>
+          <input type="text" name="text" class="popup__input popup__input_type_text" minlength='2' maxlength="200" required placeholder="Профессия" />
+          <span class="popup__form_type-error popup__form_error-text"></span>
           <button type="submit" class="popup__button">Сохранить</button>
         </form>
       </div>
@@ -70,9 +72,11 @@
       <div class="popup__content">
         <button type="button" class="popup__close"></button>
         <h2 class="popup__title">Новое место</h2>
-        <form id="popupForm" name="subject" class="popup__form">
-          <input id='popupInput' type="text" name="name" class="popup__input popup__input_type_name" placeholder="Название"/>
-          <input id="popupInputLink" type="text" name="text" class="popup__input popup__input_type_text" placeholder="Ссылка на картину"/>
+        <form id="formAddCard" name="subject" class="popup__form">
+          <input id='popupInput' type="text" name="name" class="popup__input popup__input_type_name" placeholder="Название" minlength='2' maxlength="30" required/>
+          <span class="popup__form_type-error popup__form_error-title"></span>
+          <input id="popupInputLink" type="url" name="text" class="popup__input popup__input_type_text" placeholder="Ссылка на картину" required/>
+          <span class="popup__form_type-error popup__form_error-link"></span>
           <button type="submit" class="popup__button">Сохранить</button>
         </form>
       </div>

@@ -1,10 +1,11 @@
+
 const popups = document.querySelectorAll('.popup'); //все попапы
 const popupAddCard = document.querySelector("#addCard");; //попап добавления карточки
 const openImage = document.querySelector("#openImage"); //попап просмотра картинки
 const popupProfileForm = document.querySelector('#editProfile'); //попап формы
 const inputTypeName = document.querySelector(".popup__input_type_name"); //инпут формы личных данных
 const inputTypeText = document.querySelector(".popup__input_type_text"); //инпут формы личных данных
-const popupForm = document.querySelector("#popupForm"); // форма добавления карточки
+const popupForm = document.querySelector("#formAddCard"); // форма добавления карточки
 const popupInputName = popupForm.querySelector("#popupInput"); //инпут формы добавления карточки
 const popupInputLink = popupForm.querySelector("#popupInputLink"); //инпут формы добавления карточки
 const popupClose = document.querySelectorAll('.popup__close');
@@ -16,6 +17,10 @@ const elements = document.querySelector('.elements'); //контейнер дл�
 const cardTemplate = document.querySelector('#card').content; //шаблон карточки
 const popupImage = document.querySelector('.popup__image'); //изображение попапа просмотра картинки
 const popupImageTitle = document.querySelector('.popup__image-title'); //подпись изображения попапа просмотра картинки
+const formErrorTitle = document.querySelector(`.popup__form_error-title`);
+const formErrorLink =  document.querySelector('.popup__form_error-link');
+const formErrorName =  document.querySelector('.popup__form_error-name');
+const formErrorText =  document.querySelector('.popup__form_error-text');
 const initialCards = [
   {
     name: 'Архыз',
@@ -42,6 +47,101 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
+
+//Валидация форм
+
+//Показ ошибки
+function showError(input, errorMessage, error){
+  input.classList.add('popup__input_type-error');
+  error.textContent = errorMessage;
+  error.classList.add('form__input-error_active');
+};
+//Убрать ошибку
+function hideError(input, error){
+  input.classList.remove('popup__input_type-error');
+  error.classList.remove('form__input-error_active');
+  error.textContent = '';
+};
+//Проверка на валидность
+const hasInvalidInput = (inputs) => {
+  return Array.from(inputs).some((el) => !el.validity.valid);
+}
+
+function showError2(input, errorMessage, error){
+  input.classList.add('popup__input_type-error');
+  error.textContent = errorMessage;
+  error.classList.add('form__input-error_active');
+};
+
+function hideError2(input, error){
+input.classList.remove('popup__input_type-error');
+error.classList.remove('form__input-error_active');
+error.textContent = '';
+};
+//Функция ошибки
+const checkInputValidity = (input, error) => {
+if (!input.validity.valid) {
+  console.log('error')
+  showError2(input, input.validationMessage, error);
+} else {
+  console.log('good')
+  hideError2(input, error);
+}
+};
+//Неактивная кнопка если форма не валидна
+const toggleButtonError = (inputs, button, inactiveButtonClass) => {
+  console.log(hasInvalidInput(inputs))
+  if (hasInvalidInput(inputs)) {
+      button.classList.add(inactiveButtonClass);
+      button.disabled = true;
+  } else {
+      button.classList.remove(inactiveButtonClass);
+      button.disabled = false;
+  }
+}
+
+const checkIfInputValid = (form, input, { inputErrorClass, errorClass }) => {
+  if (!input.validity.valid) {
+      showError(input, input.validationMessage, input);
+  } else {
+      hideError(input, input);
+  }
+}
+
+const setInputListeners = (form, { inputSelector, submitButtonSelector, inactiveButtonClass, ...rest }) => {
+  const inputs = form.querySelectorAll(inputSelector);
+  const submitButton = form.querySelector(submitButtonSelector);
+
+  inputs.forEach((input) => {
+      input.addEventListener('input', () => {
+          checkIfInputValid(form, input, rest);
+          toggleButtonError(inputs, submitButton,inactiveButtonClass);
+      });
+  });
+}
+
+const enableValidation = ({ formSelector, ...rest }) => {
+  const forms = document.querySelectorAll(formSelector);
+
+  forms.forEach((form) => {
+      form.addEventListener('submit', (event) => {
+          event.preventDefault();
+      });
+
+      setInputListeners(form, rest);
+  });
+}
+
+enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_inactive',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+});
+
+
 //закрытие попапа
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
@@ -110,9 +210,7 @@ function submitForm(event) {
     closePopup(popupAddCard);
 }  
 
-
-//Обработчики
-
+//Обработчики  
 profileEditButton.addEventListener('click', () => {
     inputTypeName.value = profileName.textContent;
     inputTypeText.value = nameText.textContent;
@@ -139,3 +237,28 @@ popups.forEach(popup => {
 
 popupProfileForm.addEventListener('submit', handleProfileFormSubmit);
 
+popupInputName.addEventListener('input', function (evt) {
+  checkInputValidity(popupInputName, formErrorTitle)
+  setEventListeners()
+});
+popupInputLink.addEventListener('input', function (evt) {
+  checkInputValidity(popupInputLink, formErrorLink)
+  setEventListeners()
+})
+inputTypeName.addEventListener('input', function (evt) {
+  checkInputValidity(inputTypeName, formErrorName)
+  setEventListeners()
+})
+inputTypeText.addEventListener('input', function (evt) {
+  checkInputValidity(inputTypeText, formErrorText)
+  setEventListeners()
+})
+
+/*enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_inactive',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+});*/ 
