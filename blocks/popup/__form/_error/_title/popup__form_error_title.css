@@ -1,8 +1,8 @@
-.popup__form_error-title {
+.popup__form_error_title {
     top: 135px;
 }
 @media screen and (max-width: 700px){
-    .popup__form_error-title{
+    .popup__form_error_title{
         top: 145px;
     }
 }

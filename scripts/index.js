@@ -17,10 +17,10 @@ const elements = document.querySelector('.elements'); //контейнер дл�
 const cardTemplate = document.querySelector('#card').content; //шаблон карточки
 const popupImage = document.querySelector('.popup__image'); //изображение попапа просмотра картинки
 const popupImageTitle = document.querySelector('.popup__image-title'); //подпись изображения попапа просмотра картинки
-const formErrorTitle = document.querySelector(`.popup__form_error-title`);
-const formErrorLink =  document.querySelector('.popup__form_error-link');
-const formErrorName =  document.querySelector('.popup__form_error-name');
-const formErrorText =  document.querySelector('.popup__form_error-text');
+const formErrorTitle = document.querySelector(`.popup__form_error_title`);
+const formErrorLink =  document.querySelector('.popup__form_error_link');
+const formErrorName =  document.querySelector('.popup__form_error_name');
+const formErrorText =  document.querySelector('.popup__form_error_text');
 const initialCards = [
   {
     name: 'Архыз',
