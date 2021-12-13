@@ -31,17 +31,15 @@
         <button type="button" class="profile__add-button"></button>
       </section>
 
-      <section class="elements">
-
-      </section>
+      <section class="elements"></section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
-    
+
     <template id="card">
       <article class="element">
-        <img src="images/Group.svg" class="element__trash">
+        <img src="images/Group.svg" class="element__trash" />
         <img
           class="element__image"
           alt="Гора"
@@ -59,37 +57,70 @@
         <button type="button" class="popup__close"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
         <form id="formEditProfile" name="subject" class="popup__form">
-          <input type="text" name="name" class="popup__input popup__input_type_name" minlength='2' maxlength="40" required placeholder="Имя"/>
+          <input
+            type="text"
+            name="name"
+            class="popup__input popup__input_type_name"
+            minlength="2"
+            maxlength="40"
+            required
+            placeholder="Имя"
+          />
           <span class="popup__form-type-error popup__form-error-name"></span>
-          <input type="text" name="text" class="popup__input popup__input_type_text" minlength='2' maxlength="200" required placeholder="Профессия" />
+          <input
+            type="text"
+            name="text"
+            class="popup__input popup__input_type_text"
+            minlength="2"
+            maxlength="200"
+            required
+            placeholder="Профессия"
+          />
           <span class="popup__form-type-error popup__form-error-text"></span>
           <button type="submit" class="popup__button">Сохранить</button>
         </form>
       </div>
     </div>
-    
+
     <div id="addCard" class="popup">
       <div class="popup__content">
         <button type="button" class="popup__close"></button>
         <h2 class="popup__title">Новое место</h2>
         <form id="formAddCard" name="subject" class="popup__form">
-          <input id='popupInput' type="text" name="name" class="popup__input popup__input_type_name" placeholder="Название" minlength='2' maxlength="30" required/>
+          <input
+            id="popupInput"
+            type="text"
+            name="name"
+            class="popup__input popup__input_type_name"
+            placeholder="Название"
+            minlength="2"
+            maxlength="30"
+            required
+          />
           <span class="popup__form-type-error popup__form-error-title"></span>
-          <input id="popupInputLink" type="url" name="text" class="popup__input popup__input_type_text" placeholder="Ссылка на картину" required/>
+          <input
+            id="popupInputLink"
+            type="url"
+            name="text"
+            class="popup__input popup__input_type_text"
+            placeholder="Ссылка на картину"
+            required
+          />
           <span class="popup__form-type-error popup__form-error-link"></span>
-          <button type="submit" class="popup__button">Сохранить</button>
+          <button type="submit" class="popup__button popup__button_inactive" disabled>Сохранить</button>
         </form>
       </div>
     </div>
 
     <div id="openImage" class="popup">
       <div class="popup__content popup__content_type-image">
-        <img src="#" class="popup__image">
+        <img src="#" class="popup__image" />
         <h2 class="popup__image-title">Название</h2>
         <button type="button" class="popup__close"></button>
       </div>
     </div>
 
     <script src="scripts/index.js"></script>
+    <script src="scripts/validate.js"></script>
   </body>
 </html>
