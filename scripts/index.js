@@ -50,27 +50,19 @@ const initialCards = [
 //закрытие попапа
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
-  popups.forEach((popup) => {
-    document.removeEventListener("keydown", (evt) => {
-      keyHandler(evt, popup);
-    });
-  });
+  document.removeEventListener("keydown", keyHandler);
 }
-
 //открытие попапа
 function openPopup(popup) {
   popup.classList.add("popup_opened");
-  popups.forEach((popup) => {
-    document.addEventListener("keydown", (evt) => {
-      keyHandler(evt, popup);
-    });
-  });
+  document.addEventListener("keydown", keyHandler);
 }
 //закрытие попапа на ESC
-function keyHandler(evt, popup) {
+function keyHandler(evt) {
   if (evt.key === "Escape") {
-    closePopup(popup);
-    console.log("ok");
+    const openedPopup = document.querySelector('.popup_opened');
+    console.log("ok")
+    closePopup(openedPopup);
   }
 }
 
@@ -150,14 +142,12 @@ popupClose.forEach((btn) => {
 });
 
 popups.forEach((popup) => {
- /* document.addEventListener("keydown", (evt) => {
-    keyHandler(evt, popup);
-  });*/
   popup.addEventListener("click", (event) => {
     if (event.target === event.currentTarget) {
       closePopup(popup);
     }
   });
 });
+
 popupForm.addEventListener("submit", submitForm);
 popupProfileForm.addEventListener("submit", handleProfileFormSubmit);
