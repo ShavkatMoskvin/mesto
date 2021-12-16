@@ -5,8 +5,8 @@ const popupProfileForm = document.querySelector("#editProfile"); //попап ф
 const inputTypeName = document.querySelector(".popup__input_type_name"); //инпут формы личных данных
 const inputTypeText = document.querySelector(".popup__input_type_text"); //инпут формы личных данных
 const popupForm = document.querySelector("#formAddCard"); // форма добавления карточки
-const popupInputName = popupForm.querySelector("#popupInput"); //инпут формы добавления карточки
-const popupInputLink = popupForm.querySelector("#popupInputLink"); //инпут формы добавления карточки
+const popupInputName = popupForm.querySelector("#title-card"); //инпут формы добавления карточки
+const popupInputLink = popupForm.querySelector("#link-card"); //инпут формы добавления карточки
 const popupClose = document.querySelectorAll(".popup__close");
 const profileEditButton = document.querySelector(".profile__edit-button");
 const profileAddButton = document.querySelector(".profile__add-button");
@@ -16,10 +16,6 @@ const elements = document.querySelector(".elements"); //контейнер дл�
 const cardTemplate = document.querySelector("#card").content; //шаблон карточки
 const popupImage = document.querySelector(".popup__image"); //изображение попапа просмотра картинки
 const popupImageTitle = document.querySelector(".popup__image-title"); //подпись изображения попапа просмотра картинки
-const formErrorTitle = document.querySelector(`.popup__form-error-title`);
-const formErrorLink = document.querySelector(".popup__form-error-link");
-const formErrorName = document.querySelector(".popup__form-error-name");
-const formErrorText = document.querySelector(".popup__form-error-text");
 const initialCards = [
   {
     name: "Архыз",
@@ -61,7 +57,6 @@ function openPopup(popup) {
 function keyHandler(evt) {
   if (evt.key === "Escape") {
     const openedPopup = document.querySelector('.popup_opened');
-    console.log("ok")
     closePopup(openedPopup);
   }
 }
