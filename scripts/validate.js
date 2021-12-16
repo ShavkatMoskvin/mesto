@@ -75,21 +75,3 @@ enableValidation({
   inputErrorClass: "popup__input_type-error",
   errorClass: "form__input-error_active",
 });
-/*
-//Обработчики
-popupInputName.addEventListener("input", function (evt) {
-  checkInputValidity(popupInputName, formErrorTitle);
-  setEventListeners();
-});
-popupInputLink.addEventListener("input", function (evt) {
-  checkInputValidity(popupInputLink, formErrorLink);
-  setEventListeners();
-});
-inputTypeName.addEventListener("input", function (evt) {
-  checkInputValidity(inputTypeName, formErrorName);
-  setEventListeners();
-});
-inputTypeText.addEventListener("input", function (evt) {
-  checkInputValidity(inputTypeText, formErrorText);
-  setEventListeners();
-});*/
