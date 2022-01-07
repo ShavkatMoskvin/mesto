@@ -1,3 +1,5 @@
+import Card from './Card.js'
+
 const popups = document.querySelectorAll(".popup"); //все попапы
 const popupAddCard = document.querySelector("#addCard"); //попап добавления карточки
 const openImage = document.querySelector("#openImage"); //попап просмотра картинки
@@ -62,7 +64,11 @@ function keyHandler(evt) {
 }
 
 //Добавление карточки
-function addCard(card) {
+function addCard(item) {
+  const card = new Card(item, cardTemplate, openClickImage); // Создается новая карточка и записывается в переменную
+  // Создаём карточку и возвращаем наружу
+  return card.generateCard(); // возвращаем публичную функцию из класса Card
+  /*
   const cardElement = cardTemplate.cloneNode(true);
   const elementLike = cardElement.querySelector(".element__like");
   const elementTrash = cardElement.querySelector(".element__trash");
@@ -89,8 +95,17 @@ function addCard(card) {
   });
 
   return cardElement;
+  */
 }
 
+function openClickImage(){
+  elementImage.addEventListener("click", () => {
+    popupImage.src = item.link;
+    popupImage.alt = item.name;
+    popupImageTitle.textContent = item.name;
+    openPopup(openImage);
+  });
+}
 function renderCard(item, container) {
   container.append(addCard(item));
 }
