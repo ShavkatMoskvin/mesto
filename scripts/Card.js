@@ -1,4 +1,5 @@
 export default class Card {
+<<<<<<< HEAD
   constructor(data, selector, cardClick) {
       this._link = data.link;
       this._name = data.name;
@@ -40,4 +41,20 @@ export default class Card {
 
 };
   
+=======
+    constructor(selector, elements, data, title){
+        this._selector = selector;
+        this._elements = elements;
+        this._title = title;
+        this._link = data.link;
+    }
+
+    _getTemplate(){
+        return document.querySelector(this._selector).content.querySelector(".element").cloneNode(true)
+    }
+
+    getView(){
+        return this._getTemplate()
+    }
+>>>>>>> 365c3cd128f4881bee23df9ce7424d14cae6f275
 }

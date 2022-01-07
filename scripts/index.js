@@ -18,6 +18,7 @@ const elements = document.querySelector(".elements"); //контейнер дл�
 const cardTemplate = document.querySelector("#card").content; //шаблон карточки
 const popupImage = document.querySelector(".popup__image"); //изображение попапа просмотра картинки
 const popupImageTitle = document.querySelector(".popup__image-title"); //подпись изображения попапа просмотра картинки
+const addCardButton = document.querySelector("#addCardButton")
 const initialCards = [
   {
     name: "Архыз",
@@ -130,7 +131,7 @@ function submitForm(event) {
     addCard({ link: popupInputLink.value, name: popupInputName.value })
   );
   popupForm.reset();
-
+  addCardButton.classList.add("popup__button_inactive")
   closePopup(popupAddCard);
 }
 
