@@ -1,4 +1,5 @@
 import Card from './Card.js'
+import FormValidator from './FormValidator.js'
 
 const popups = document.querySelectorAll(".popup"); //все попапы
 const popupAddCard = document.querySelector("#addCard"); //попап добавления карточки
@@ -15,7 +16,7 @@ const profileAddButton = document.querySelector(".profile__add-button");
 const profileName = document.querySelector(".profile__title");
 const nameText = document.querySelector(".profile__subtitle");
 const elements = document.querySelector(".elements"); //контейнер для карточек
-const cardTemplate = document.querySelector("#card").content; //шаблон карточки
+//const cardTemplate = document.querySelector("#card").content; //шаблон карточки
 const popupImage = document.querySelector(".popup__image"); //изображение попапа просмотра картинки
 const popupImageTitle = document.querySelector(".popup__image-title"); //подпись изображения попапа просмотра картинки
 const addCardButton = document.querySelector("#addCardButton")
@@ -63,12 +64,10 @@ function keyHandler(evt) {
     closePopup(openedPopup);
   }
 }
-
 //Добавление карточки
 function addCard(item) {
-  const card = new Card(item, cardTemplate, openClickImage); // Создается новая карточка и записывается в переменную
-  // Создаём карточку и возвращаем наружу
-  return card.generateCard(); // возвращаем публичную функцию из класса Card
+  const card = new Card(item, "#card", openClickImage);
+  return card.generateCard();
   /*
   const cardElement = cardTemplate.cloneNode(true);
   const elementLike = cardElement.querySelector(".element__like");
