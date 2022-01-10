@@ -113,7 +113,6 @@ const enableValidation = (config) => {
     });
     const validForm = new FormValidator(config, form, buttons);
     validForm.enableValidation();
-    validForm._toggleButtonError();
   });
 };
 
