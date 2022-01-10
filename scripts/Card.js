@@ -11,8 +11,6 @@ export default class Card {
       .content
       .querySelector('.element')
       .cloneNode(true);
-    /*const cardItem = this._selector.content.querySelector('.element').cloneNode(true)
-    return cardItem;*/
   }
 
   generateCard() {
@@ -39,6 +37,7 @@ export default class Card {
 
     this._card.querySelector('.element__trash').addEventListener('click', () => {
         this._card.remove();
+        this._card = null;
     });
 
     };

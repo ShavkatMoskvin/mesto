@@ -1,27 +1,28 @@
 export default class FormValidator {
-  constructor(config, form,) {
+  constructor(config, form, buttons) {
     this._inputSelector = config.inputSelector;
     this._submitButtonSelector = config.submitButtonSelector;
     this._inactiveButtonClass = config.inactiveButtonClass;
     this._inputErrorClass = config.inputErrorClass;
     this._errorClass = config.errorClass;
     this._form = form;
+    this._buttons = buttons;
   }
-    enableValidation() {
-    this._form.addEventListener('submit', (evt) => {
-       evt.preventDefault();
-     });  
+  enableValidation() {
+    this._form.addEventListener("submit", (evt) => {
+      evt.preventDefault();
+    });
     this._setInputListeners();
   }
 
-   //Показ ошибки
+  //Показ ошибки
   _showError(input) {
     const errorMessage = this._form.querySelector(`#${input.id}-error`);
     errorMessage.textContent = input.validationMessage;
     errorMessage.classList.add(this._errorClass);
     input.classList.add(this._inputErrorClass);
   }
-   //Убрать ошибку
+  //Убрать ошибку
   _hideError(input) {
     const errorMessage = this._form.querySelector(`#${input.id}-error`);
     errorMessage.textContent = "";
@@ -29,11 +30,11 @@ export default class FormValidator {
     input.classList.remove(this._inputErrorClass);
   }
 
-   //Функция ошибки
+  //Функция ошибки
   _checkInputValid(input) {
     if (!input.validity.valid) {
       this._showError(input);
-    } else {      
+    } else {
       this._hideError(input);
     }
   }
@@ -53,54 +54,23 @@ export default class FormValidator {
       this._submitButton.disabled = false;
     }
   }
-  /*
-  const setInputListeners = (form, { inputSelector, submitButtonSelector, inactiveButtonClass, ...rest }) => {
-    const inputs = form.querySelectorAll(inputSelector);
-    const submitButton = form.querySelector(submitButtonSelector);
-  
-    inputs.forEach((input) => {
-        input.addEventListener('input', () => {
-            checkIfInputValid(form, input, rest);
-            toggleButtonError(inputs, submitButton,inactiveButtonClass);
-        });
-    });
-  }
-  */
   _setInputListeners() {
     this._inputs = this._form.querySelectorAll(this._inputSelector);
     this._submitButton = this._form.querySelector(this._submitButtonSelector);
 
     this._inputs.forEach((input) => {
-      input.addEventListener('input', () => {
+      //Валидация при нажатии кнопки
+      this._buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          this._checkInputValid(input);
+          this._toggleButtonError();
+        });
+      });
+      //Валидация при вводе
+      input.addEventListener("input", () => {
         this._checkInputValid(input);
         this._toggleButtonError();
-      })
-    })
-  }
-
-
-}
-const config = ({
-    formSelector: ".popup__form",
-    inputSelector: ".popup__input",
-    submitButtonSelector: ".popup__button",
-    inactiveButtonClass: "popup__button_inactive",
-    inputErrorClass: "popup__input_type-error",
-    errorClass: "form__input-error_active",
-  });
-
-const enableValidation = (config) => {
-    const forms = Array.from(document.querySelectorAll(config.formSelector));
-    console.log(forms)
-    forms.forEach((form) => {
-        form.addEventListener('submit', (event) => {
-            event.preventDefault();
-        });
-        const validForm = new FormValidator(config, form);
-        validForm.enableValidation();
-        validForm._toggleButtonError()
+      });
     });
   }
-
-  enableValidation(config)
-
+}
