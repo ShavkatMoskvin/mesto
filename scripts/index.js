@@ -19,7 +19,6 @@ const nameText = document.querySelector(".profile__subtitle");
 const elements = document.querySelector(".elements"); //контейнер для карточек
 const popupImage = document.querySelector(".popup__image"); //изображение попапа просмотра картинки
 const popupImageTitle = document.querySelector(".popup__image-title"); //подпись изображения попапа просмотра картинки
-const addCardButton = document.querySelector("#addCardButton");
 const initialCards = [
   {
     name: "Архыз",
