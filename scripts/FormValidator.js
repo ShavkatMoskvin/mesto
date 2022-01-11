@@ -64,10 +64,12 @@ export default class FormValidator {
       //Диактвировать кнопку сохр. при нажатии кнопки "Редактировать"
       this._editButton.addEventListener("click", () => {
         this._toggleButtonError();
+        this._hideError(input);
       });
       //Диактвировать кнопку сохр. при нажатии кнопки "Добавить"
       this._addButton.addEventListener("click", () => {
         this._toggleButtonError();
+        this._hideError(input);
       });
       //Валидация при вводе
       input.addEventListener("input", () => {
