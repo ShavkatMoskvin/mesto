@@ -1,12 +1,14 @@
 export default class FormValidator {
-  constructor(config, form, buttons) {
+  constructor(config, form, editButton, addButton, inputFieldAddCard) {
     this._inputSelector = config.inputSelector;
     this._submitButtonSelector = config.submitButtonSelector;
     this._inactiveButtonClass = config.inactiveButtonClass;
     this._inputErrorClass = config.inputErrorClass;
     this._errorClass = config.errorClass;
     this._form = form;
-    this._buttons = buttons;
+    this._editButton = editButton;
+    this._addButton = addButton;
+    this._inputFieldAddCard = inputFieldAddCard;
   }
   enableValidation() {
     this._form.addEventListener("submit", (evt) => {
@@ -59,12 +61,13 @@ export default class FormValidator {
     this._submitButton = this._form.querySelector(this._submitButtonSelector);
 
     this._inputs.forEach((input) => {
-      //Валидация при нажатии кнопки
-      this._buttons.forEach((button) => {
-        button.addEventListener("click", () => {
-          this._checkInputValid(input);
-          this._toggleButtonError();
-        });
+      //Диактвировать кнопку сохр. при нажатии кнопки "Редактировать"
+      this._editButton.addEventListener("click", () => {
+        this._toggleButtonError();
+      });
+      //Диактвировать кнопку сохр. при нажатии кнопки "Добавить"
+      this._addButton.addEventListener("click", () => {
+        this._toggleButtonError();
       });
       //Валидация при вводе
       input.addEventListener("input", () => {

@@ -106,12 +106,8 @@ function submitForm(event) {
 
 const enableValidation = (config) => {
   const forms = Array.from(document.querySelectorAll(config.formSelector));
-  const buttons = document.querySelectorAll('button[type="button"]')
   forms.forEach((form) => {
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-    });
-    const validForm = new FormValidator(config, form, buttons);
+    const validForm = new FormValidator(config, form, profileEditButton, profileAddButton);
     validForm.enableValidation();
   });
 };
