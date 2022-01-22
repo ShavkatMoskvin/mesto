@@ -11,9 +11,6 @@ export default class FormValidator {
     this._inputFieldAddCard = inputFieldAddCard;
   }
   enableValidation() {
-    this._form.addEventListener("submit", (evt) => {
-      evt.preventDefault();
-    });
     this._setInputListeners();
   }
 

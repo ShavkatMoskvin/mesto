@@ -1,9 +1,11 @@
-import UserInfo from "./scripts/UserInfo.js";
-import Card from "./scripts/Card.js";
-import FormValidator from "./scripts/FormValidator.js";
-import Section from "./scripts/Section.js";
-import PopupWithImage from "./scripts/PopupWithImage.js";
-import PopupWithForm from "./scripts/PopupWithForm.js";
+import  "./index.css"
+
+import UserInfo from "../components/UserInfo.js";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+import Section from "../components/Section.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
 import {
   config,
   popupAddCard,
@@ -18,7 +20,7 @@ import {
   elements,
   popupImageTitle,
   initialCards,
-} from "./scripts/constants.js";
+} from "../utils/constants.js";
 
 function addCard(item) {
   const card = new Card(item, "#card", {
@@ -53,8 +55,8 @@ const openEditProfile = new PopupWithForm(popupProfileForm, {
 openEditProfile.setInputListeners();
 
 const openAddCard = new PopupWithForm(popupAddCard, {
-  formSubmit: (data) => {
-    elements.prepend(addCard({ link: data.text, name: data.name }));
+  formSubmit: (cardItems) => {
+    elements.addItemPrepend(createCard(cardItems));;
     openAddCard.close();
   },
 });

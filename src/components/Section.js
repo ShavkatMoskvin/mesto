@@ -11,9 +11,12 @@ export default class Section {
     });
   }
 
+  addItemPrepend(element) {
+    this._container.prepend(element);
+  }
+
   //* Добавление карточки
   addItem(element) {
     this._container.append(element);
   }
 }
-
