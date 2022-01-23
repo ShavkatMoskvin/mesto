@@ -55,8 +55,8 @@ const openEditProfile = new PopupWithForm(popupProfileForm, {
 openEditProfile.setInputListeners();
 
 const openAddCard = new PopupWithForm(popupAddCard, {
-  formSubmit: (cardItems) => {
-    elements.addItemPrepend(createCard(cardItems));;
+  formSubmit: (data) => {
+    section.addItemPrepend(addCard({ link: data.text, name: data.name }));;
     openAddCard.close();
   },
 });
