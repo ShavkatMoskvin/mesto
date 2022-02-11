@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <!--<link rel="stylesheet" href="./pages/index.css">-->
+    <!--<link rel="stylesheet" href="./pages/index.css" />-->
     <link rel="shortcut icon" href="<%=require('./images/logo.svg')%>" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -16,11 +16,17 @@
 
     <main>
       <section class="profile">
-        <img
-          src="<%=require('./images/image.jpg')%>"
-          alt="Жак-Ив Кусто"
-          class="profile__avatar"
-        />
+        <div class="profile__avatar-edit" style="position: relative">
+          <img
+            src="<%=require('./images/image.jpg')%>"
+            alt="Жак-Ив Кусто"
+            class="profile__avatar"
+          />
+          <button
+            title="Загрузить новый аватар"
+            class="profile__avatar-edit-button"
+          ></button>
+        </div>
         <div class="profile__info">
           <div class="profile__title-container">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -47,7 +53,10 @@
         />
         <div class="element__title-container">
           <h2 class="element__title">Домбай</h2>
-          <button type="button" class="element__like"></button>
+          <div>
+            <button type="button" class="element__like"></button>
+            <p class="element__counter">0</p>
+          </div>
         </div>
       </article>
     </template>
@@ -74,7 +83,7 @@
           <input
             id="text-card"
             type="text"
-            name="text"
+            name="about"
             class="popup__input popup__input_type_text"
             minlength="2"
             maxlength="200"
@@ -85,7 +94,9 @@
             id="text-card-error"
             class="popup__form-type-error popup__form-error-text"
           ></span>
-          <button id="editButton" type="submit" class="popup__button">Сохранить</button>
+          <button id="editButton" type="submit" class="popup__button">
+            Сохранить
+          </button>
         </form>
       </div>
     </div>
@@ -112,7 +123,7 @@
           <input
             id="link-card"
             type="url"
-            name="text"
+            name="link"
             class="popup__input popup__input_type_text"
             placeholder="Ссылка на картину"
             required
@@ -121,11 +132,7 @@
             id="link-card-error"
             class="popup__form-type-error popup__form-error-link"
           ></span>
-          <button
-            id="addCardButton"
-            type="submit"
-            class="popup__button"
-          >
+          <button id="addCardButton" type="submit" class="popup__button">
             Сохранить
           </button>
         </form>
@@ -140,6 +147,38 @@
       </div>
     </div>
 
-    <!-- <script type="module" src="./pages/index.js"></script>-->
+    <div id="deleteCard" class="popup">
+      <div class="popup__content">
+        <button type="button" class="popup__close"></button>
+        <form id="deleteForm" class="popup__form">
+          <h2 class="popup__title">Вы уверены?</h2>
+          <button type="submit" class="popup__button">Да</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="editAvatar" class="popup">
+      <div class="popup__content">
+        <button type="button" class="popup__close"></button>
+        <form id="deleteForm" class="popup__form">
+          <h2 class="popup__title">Обновить аватар</h2>
+          <input
+            id="link-card"
+            type="url"
+            name="avatar"
+            class="popup__input popup__input_type_text"
+            placeholder="Ссылка на картину"
+            required
+          />
+          <span
+            id="link-card-error"
+            class="popup__form-type-error popup__form-error-avatar"
+          ></span>
+          <button type="submit" class="popup__button popup__button_inactive" disabled>Сохранить</button>
+        </form>
+      </div>
+    </div>
+
+    <!--<script type="module" src="./pages/index.js"></script>-->
   </body>
 </html>
