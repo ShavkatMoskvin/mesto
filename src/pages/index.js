@@ -45,10 +45,9 @@ api.getInitialData().then((data) => {
     userInfo.setUserAvatar(userData);
   }).catch((err) => {console.log(err)})
 
-function addCard(item) {
-  const card = new Card(item, "#card", ownerId, api, {
+function addCard(item, condition) {
+  const card = new Card(item, "#card", ownerId, api, condition,{
     cardClick: (alt, link) => {
-      card.getId();
       popupWithImage.open({ alt, link });
     },
     trashClick: () => {
@@ -86,10 +85,13 @@ const popupConfirm = new PopupConfirm(popupDelete);
 const openEditProfile = new PopupWithForm(popupProfileForm, {
   formSubmit: (data) => {
     openEditProfile.renderLoading(true);
-    api.setUserInfo(data).catch((error) => {
-      console.log(error);
-    })
-    .finally(() => {
+    api.setUserInfo(data).then(() => { 
+      userInfo.setUserInfo(data);
+     })
+      .catch((error) => {
+         console.log(error);
+       })
+      .finally(() => {
       openEditProfile.renderLoading(false);
       openEditProfile.close();
     })
@@ -99,12 +101,10 @@ const openEditProfile = new PopupWithForm(popupProfileForm, {
 
 const openAddCard = new PopupWithForm(popupAddCard, {
   formSubmit: (data) => {
+    elements.prepend(addCard(data, "true"))
     openAddCard.renderLoading(true);
     api.addCard(data).then(() => { 
-      console.log(data)
-      const card2 = addCard(data);
-      const cardElement = card2.generateCard();
-      section.addItem(cardElement);
+        
      })
       .catch((err) => {
         console.log(err);
@@ -119,7 +119,9 @@ const openAddCard = new PopupWithForm(popupAddCard, {
 const popupWithUpdateAvatarForm = new PopupWithForm(popupEditAvatar, {
   formSubmit: (data) => {
     popupWithUpdateAvatarForm.renderLoading(true);
-    api.setUserAvatar(data)
+    api.setUserAvatar(data).then(() => {
+      userInfo.setUserAvatar(data)
+    })
       .catch((err) => {
         console.log(err);
       })
