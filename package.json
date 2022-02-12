@@ -1,11 +1,11 @@
 {
   "name": "mesto-1",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
-    "dev": "webpack server",
+    "dev": "webpack serve --mode development",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
@@ -33,7 +33,7 @@
     "postcss-loader": "^6.2.1",
     "webpack": "^5.66.0",
     "webpack-cli": "^4.9.1",
-    "webpack-dev-server": "^4.7.3"
+    "webpack-dev-server": "^4.7.4"
   },
   "dependencies": {
     "core-js": "^3.20.3"
