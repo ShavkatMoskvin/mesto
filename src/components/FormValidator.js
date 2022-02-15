@@ -1,17 +1,24 @@
 export default class FormValidator {
-  constructor(config, form, editButton, addButton, inputFieldAddCard) {
+  constructor(config, form, inputFieldAddCard) {
     this._inputSelector = config.inputSelector;
     this._submitButtonSelector = config.submitButtonSelector;
     this._inactiveButtonClass = config.inactiveButtonClass;
     this._inputErrorClass = config.inputErrorClass;
     this._errorClass = config.errorClass;
     this._form = form;
-    this._editButton = editButton;
-    this._addButton = addButton;
     this._inputFieldAddCard = inputFieldAddCard;
   }
   enableValidation() {
     this._setInputListeners();
+  }
+
+  resetValidation() {
+    this._toggleButtonState();
+
+    this._inputs.forEach((inputElement) => {
+      this._hideError(inputElement)
+    });
+
   }
 
   //Показ ошибки
@@ -44,7 +51,7 @@ export default class FormValidator {
   };
 
   //Неактивная кнопка если форма не валидна
-  _toggleButtonError() {
+  _toggleButtonState() {
     if (this._hasInvalidInput(this._inputs)) {
       this._submitButton.classList.add(this._inactiveButtonClass);
       this._submitButton.disabled = true;
@@ -55,23 +62,14 @@ export default class FormValidator {
   }
   _setInputListeners() {
     this._inputs = this._form.querySelectorAll(this._inputSelector);
+
     this._submitButton = this._form.querySelector(this._submitButtonSelector);
 
     this._inputs.forEach((input) => {
-      //Диактвировать кнопку сохр. при нажатии кнопки "Редактировать"
-      this._editButton.addEventListener("click", () => {
-        this._toggleButtonError();
-        this._hideError(input);
-      });
-      //Диактвировать кнопку сохр. при нажатии кнопки "Добавить"
-      this._addButton.addEventListener("click", () => {
-        this._toggleButtonError();
-        this._hideError(input);
-      });
       //Валидация при вводе
       input.addEventListener("input", () => {
         this._checkInputValid(input);
-        this._toggleButtonError();
+        this._toggleButtonState();
       });
     });
   }

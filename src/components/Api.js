@@ -42,7 +42,7 @@ export default class Api {
         name: data.name,
         about: data.about
       })
-    }).then(this._handleOriginalResponse).then(res => console.log(res))
+    }).then(this._handleOriginalResponse)
   }
 
   setUserAvatar(data) {
@@ -53,7 +53,7 @@ export default class Api {
         "Content-type": "application/json",
       },
       body: JSON.stringify(data),
-    }).then(this._handleOriginalResponse).then(res => console.log(res))
+    }).then(this._handleOriginalResponse)
   }
   
   getInitialData() {
