@@ -1,5 +1,12 @@
 export default class Card {
-  constructor(data,selector,userId,api,condition,{ cardClick, trashClick }) {
+  constructor(
+    data,
+    selector,
+    userId,
+    api,
+    condition,
+    { cardClick, trashClick }
+  ) {
     //this._link = data.link;
     //this._name = data.name;
     this._data = data;
@@ -25,34 +32,28 @@ export default class Card {
   generateCard() {
     this._card = this._getTemplate();
     this._card.querySelector(".element__title").textContent = this._data.name;
-    this._image = this._card.querySelector(".element__image");
+    this._card.querySelector(".element__counter").textContent = this._data.likes.length;
 
+    this._image = this._card.querySelector(".element__image");
     this._image.src = this._data.link; // атрибут src
     this._image.alt = this._data.name; // атрибут alt
 
-     this._card.querySelector(
-      ".element__counter"
-    ).textContent = this._data.likes.length
-    //this._setIsLiked()
     this._setEventListeners();
     return this._card;
-  }
-
-  _setIsLiked() {
-    //* Условие будет true если в массиве лайков найдется лайк с id пользователя
-    if (this._data.likes.some(elem => elem._id === this._userId)) {
-      this._likeButton.classList.add("elements__like-button_active");
-      this._likeButton.classList.add("heartbeat");
-    }
   }
 
   _renderLikes(card) {
     this.likeButton = card.querySelector(".element__like");
     this.likeNumber = card.querySelector(".element__counter");
-    
+
+    if (this._data.likes.some((item) => item._id === this._userId)){
+      this.likeButton.classList.add(`element__like_active`);
+    }
+
     this.likeButton.addEventListener("click", () => {
       if (this.likeButton.classList.contains("element__like_active")) {
-        this._api.dislikeCard(this._data._id)
+        this._api
+          .dislikeCard(this._data._id)
           .then((data) => {
             this.likeNumber.textContent = data.likes.length;
             this.likeButton.classList.remove("element__like_active");
@@ -81,12 +82,12 @@ export default class Card {
     this._image.addEventListener("click", () => {
       this._cardClick(this._data.name, this._data.link);
     });
-    // if (this._condition === "true") {
-    // } else {
+
     this._renderLikes(this._card);
     this._renderBins(this._card);
-    //}
-    this._card.querySelector(".element__trash")
+
+    this._card
+      .querySelector(".element__trash")
       .addEventListener("click", () => {
         this._trashClick();
       });
