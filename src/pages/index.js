@@ -136,30 +136,21 @@ const popupWithUpdateAvatarForm = new PopupWithForm(popupEditAvatar, {
   },
 });
 
-const formValidators = [];
-
-const resetValidation = new FormValidator(config, popupProfileForm);
-resetValidation.enableValidation();
+const formValidators = {};
 
 // Включение валидации
 const enableValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.formSelector));
   formList.forEach((formElement) => {
     const validator = new FormValidator(config, formElement);
+    // получаем данные из атрибута `name` у формы
+    const formName = formElement.getAttribute('name')
 
-    formValidators.push(validator);
+    // вот тут в объект записываем под именем формы
+    formValidators[formName] = validator;
     validator.enableValidation();
   });
 };
-// enableValidation(config);
-
-// const enableValidation = (config) => {
-//   const forms = Array.from(document.querySelectorAll(config.formSelector));
-//   forms.forEach((form) => {
-//     const validForm = new FormValidator(config, form);
-//     validForm.enableValidation();
-//   });
-// };
 
 //Обработчики
 enableValidation(config);
@@ -171,25 +162,19 @@ popupWithImage.setEventListeners();
 openAddCard.setEventListeners();
 
 profileChangeButton.addEventListener("click", () => {
-  formValidators[3].resetValidation()
+  formValidators["editAvatar"].resetValidation()
   popupWithUpdateAvatarForm.open();
 });
 
 profileEditButton.addEventListener("click", () => {
-  api
-    .getUserInfo()
-    .then((userInfo) => {
-      openEditProfile.open();
-      inputTypeName.value = userInfo.name;
-      inputTypeText.value = userInfo.about;
-      formValidators[0].resetValidation()
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  const userInfoData = userInfo.getUserInfo();
+  inputTypeName.value = userInfoData.name
+  inputTypeText.value = userInfoData.job
+  formValidators["editProfile"].resetValidation()
+  openEditProfile.open();
 });
 
 profileAddButton.addEventListener("click", () => {
-  formValidators[1].resetValidation()
+  formValidators["addCard"].resetValidation()
   openAddCard.open();
 });
